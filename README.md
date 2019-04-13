@@ -12,6 +12,11 @@ Otherwise the version packaged in this image will be used.
 
 To install a project, navigate to the root folder and run `grill update`.
 
+## Compiling a project
+
+To compile and run your project's unit tests, use `grill test`.
+
 ## Building a project
 
 coming soon
+
