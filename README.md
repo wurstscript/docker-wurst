@@ -1,6 +1,6 @@
 # WurstScript Docker Image
 
-Base wurtscript docker image with grill.
+Basic wurtscript docker image with grill.
 Grill is the wurst package manager and is invoked via the `grill` command.
 
 ## Update Wurst
