@@ -1,4 +1,4 @@
-FROM openjdk:11-slim
+FROM openjdk:11
 
 RUN useradd -ms /bin/bash wurstuser
 USER wurstuser
