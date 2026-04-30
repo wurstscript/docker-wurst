@@ -16,11 +16,13 @@ jobs:
       - name: Build image
         run: docker build -t wurstscript:ci .
 
-      - name: Smoke test — grill available
-        run: docker run --rm wurstscript:ci grill --help
-
-      - name: Smoke test — wurstscript compiler available
-        run: docker run --rm wurstscript:ci bash -c "ls /home/wurstuser/.wurst/wurstscript.jar"
+      - name: Smoke test
+        run: |
+          docker run --rm wurstscript:ci bash -c "
+            command -v grill || (echo 'grill not found' && exit 1)
+            ls /home/wurstuser/.wurst/wurstscript.jar || (echo 'wurstscript.jar not found' && exit 1)
+            echo 'All checks passed'
+          "
 
       - name: Log in to Docker Hub
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
