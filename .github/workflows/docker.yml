@@ -20,7 +20,7 @@ jobs:
         run: |
           docker run --rm wurstscript:ci bash -c "
             command -v grill || (echo 'grill not found' && exit 1)
-            ls /home/wurstuser/.wurst/wurstscript.jar || (echo 'wurstscript.jar not found' && exit 1)
+            ls /home/wurstuser/.wurst/wurst-compiler/wurstscript.jar || (echo 'wurstscript.jar not found' && exit 1)
             echo 'All checks passed'
           "
 
