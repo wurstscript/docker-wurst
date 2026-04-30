@@ -4,7 +4,7 @@ RUN useradd -ms /bin/bash wurstuser
 USER wurstuser
 WORKDIR /home/wurstuser
 
-RUN wget https://github.com/wurstscript/WurstSetup/releases/download/nightly-master/WurstSetup.jar
+RUN curl -L -o WurstSetup.jar https://github.com/wurstscript/WurstSetup/releases/download/nightly-master/WurstSetup.jar
 RUN java -jar WurstSetup.jar install wurstscript
 
 ENV PATH="/home/wurstuser/.wurst/:${PATH}"
