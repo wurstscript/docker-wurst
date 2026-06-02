@@ -6,8 +6,15 @@ RUN useradd -ms /bin/bash wurstuser
 USER wurstuser
 WORKDIR /home/wurstuser
 
-RUN curl -L -o WurstSetup.jar https://github.com/wurstscript/WurstSetup/releases/download/nightly-master/WurstSetup.jar
-RUN java -jar WurstSetup.jar install wurstscript
+# Grill (formerly WurstSetup) is published as a nightly fat jar on the
+# nightly-master tag, which the upstream deploy workflow force-updates on every
+# push to master. Pulling it at build time always yields the latest version.
+RUN curl -L -o grill.jar https://github.com/wurstscript/WurstSetup/releases/download/nightly-master/WurstSetup.jar
+
+# Installs the WurstScript compiler to ~/.wurst and creates the `grill`/`wurstscript`
+# launchers there. This runs non-interactively: requireConfirmation defaults to false,
+# so `install wurstscript` never blocks on stdin.
+RUN java -jar grill.jar install wurstscript
 RUN chmod -R u+x /home/wurstuser/.wurst/
 
 ENV PATH="/home/wurstuser/.wurst/:${PATH}"
