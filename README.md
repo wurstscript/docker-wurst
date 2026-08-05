@@ -20,3 +20,4 @@ To compile and run your project's unit tests, use `grill test`.
 
 To generate an output map, use `grill build <input_map>`.
 This will build the w3x into the `_build` folder, according to `wurst.build` specifications.
+
